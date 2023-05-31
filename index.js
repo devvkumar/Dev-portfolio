@@ -7,31 +7,6 @@ const headerHamMenuCloseBtn = document.querySelector(
 )
 const headerSmallMenuLinks = document.querySelectorAll('.header__sm-menu-link')
 
-// Get the modal
-var modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
 
 hamMenuBtn.addEventListener('click', () => {
   if (smallMenu.classList.contains('header__sm-menu--active')) {
@@ -61,4 +36,29 @@ const headerLogoConatiner = document.querySelector('.header__logo-container')
 
 headerLogoConatiner.addEventListener('click', () => {
   location.href = 'index.html'
+})
+
+var btn = document.getElementById('btn');
+btn.addEventListener('click', function(e){
+  e.preventDefault();
+  console.log('hi');
+  var name = document.getElementById('name').value;
+  var email = document.getElementById('email').value;
+  var subject = document.getElementById('subject').value;
+  var message = document.getElementById('message').value;
+  var name = document.getElementById('name').value;
+  var body = 'name : ' + name + '<br/> email : ' + email + '<br/> subject : ' + subject + '<br/> Massage : ' + message; 
+  Email.send({
+    Host : "smtp.elasticemail.com",
+    Username : "devkardam004@gmail.com",
+    Password : "74086AA59ADA464B46A9E6ED5E84C6B8FDD1",
+    // SecureToken : "43b25021-261f-4adc-b3c9-efc50e47dd8a",
+    To : 'dkkardam49@gmail.com',
+    From : "devkardam004@gmail.com",
+    Subject : "Contact Massage",
+    Body : body
+}).then(
+  message => alert(message)
+);
+
 })
